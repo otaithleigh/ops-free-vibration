@@ -1,0 +1,36 @@
+{% set data = load_setup_py_data() %}
+
+package:
+  name: PROJECT
+  version: {{ data.get('version') }}
+
+source:
+  git_url: "../"
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip --no-deps install . -vv
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+    # Other runtime dependencies
+
+test:
+  imports:
+    - PACKAGE
+    - PACKAGE.SUBPACKAGE
+  requires:
+    - pytest
+  source_files:
+    - test
+  commands:
+    - pytest
+
+about:
+  home: {{ data.get('url') }}
+  license: {{ data.get('license') }}
+  summary: {{ data.get('description') }}
