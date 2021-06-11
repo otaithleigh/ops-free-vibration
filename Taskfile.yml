@@ -3,7 +3,7 @@ version: '3'
 output: prefixed
 
 vars:
-  PACKAGE: package
+  PACKAGE: opsfreevibration
   VERSION:
     sh: cat "src/{{.PACKAGE}}/__version__"
   CONDA:
